@@ -13,7 +13,7 @@
 			Sort[ITEM_SKILLBOOK] = 6;
 			Sort[ITEM_SKILLFORGET] = 6;
 			const auto & it = Sort.find(m_pProto->bType);
-			if (it != mymap.end())
+			if (it != Sort.end())
 				return it->second;
 			return Sort.rbegin()->second + 1;
 		}
