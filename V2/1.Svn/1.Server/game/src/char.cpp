@@ -4,7 +4,7 @@ void CHARACTER::SortInven(BYTE option)
 {
 	if (IsDead()) return;
 	std::vector<LPITEM> all;
-    LPITEM myitems;
+    	LPITEM myitems;
 #ifdef ENABLE_EXTEND_INVEN_SYSTEM
 	auto size = Inventory_Size();
 #else
