@@ -37,6 +37,6 @@ void CHARACTER::SortInven(BYTE option)
 			AutoGiveItem(getitem->GetVnum(), getitem->GetCount(), -1, false);
 		else
 			AutoGiveItem(getitem);
-    };
+    	};
 }
 #endif
