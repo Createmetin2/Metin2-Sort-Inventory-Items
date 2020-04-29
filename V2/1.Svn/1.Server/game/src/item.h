@@ -3,18 +3,16 @@
 		
 ///Add
 #ifdef ENABLE_SORT_INVEN
-		BYTE CustomSort()	{
-			std::map<BYTE,BYTE> Sort;
-			Sort[ITEM_WEAPON] = 1;
-			Sort[ITEM_ARMOR] = 2;
-			Sort[ITEM_USE] = 3;
-			Sort[ITEM_BELT] = 4;
-			Sort[ITEM_COSTUME] = 5;
-			Sort[ITEM_SKILLBOOK] = 6;
-			Sort[ITEM_SKILLFORGET] = 6;
-			const auto & it = Sort.find(m_pProto->bType);
-			if (it != Sort.end())
-				return it->second;
-			return Sort.rbegin()->second + 1;
+		const int CustomSort() const {
+			switch (m_pProto->bType) {
+				case ITEM_WEAPON:	return 1;
+				case ITEM_ARMOR:	return 2;
+				case ITEM_USE:	return 3;
+				case ITEM_BELT:	return 4;
+				case ITEM_COSTUME:	return 5;
+				case ITEM_SKILLBOOK:
+				case ITEM_SKILLFORGET:	return 6;
+			}
+			return 7;
 		}
 #endif
