@@ -1,4 +1,3 @@
-///Add
 #ifdef ENABLE_SORT_INVEN
 void CHARACTER::SortInven(BYTE option)
 {
@@ -36,9 +35,11 @@ void CHARACTER::SortInven(BYTE option)
 		const auto table = ITEM_MANAGER::instance().GetTable(getitem->GetVnum());
 		if (!table)
 			continue;
-		static const std::initializer_list<BYTE> out = { ITEM_BLEND, ITEM_USE }; // edit
-		if (table->dwFlags & ITEM_FLAG_STACKABLE && std::find(out.begin(), out.end(), table->bType) == out.end())
+		static const std::initializer_list<DWORD> out = { ITEM_AUTO_HP_RECOVERY_S, ITEM_AUTO_HP_RECOVERY_M, ITEM_AUTO_HP_RECOVERY_L, ITEM_AUTO_HP_RECOVERY_X, ITEM_AUTO_SP_RECOVERY_S, ITEM_AUTO_SP_RECOVERY_M, ITEM_AUTO_SP_RECOVERY_L, ITEM_AUTO_SP_RECOVERY_X, 70057 };
+		if (table->dwFlags & ITEM_FLAG_STACKABLE && table->bType != ITEM_BLEND && std::find(out.begin(), out.end(), getitem->GetVnum()) == out.end()) {
 			AutoGiveItem(getitem->GetVnum(), getitem->GetCount(), -1, false);
+			M2_DESTROY_ITEM(getitem);
+		}
 		else
 			AutoGiveItem(getitem);
 	};
